@@ -37,7 +37,7 @@ public class EmployeeValidator {
             return "社員番号を入力してください。";
         }
 
-        // 既に登録されている社員番号との重複チェック
+        // すでに登録されている社員番号との重複チェック
         if(codeDuplicateCheckFlag) {
             EntityManager em = DBUtil.createEntityManager();
             long employees_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class).setParameter("code", code).getSingleResult();
