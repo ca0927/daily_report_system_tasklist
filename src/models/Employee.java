@@ -40,20 +40,20 @@ public class Employee {
     @Column(name = "code", nullable = false, unique = true)     // 一意制約 (unique = ture：先にある社員番号は使用不可)
     private String code;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false)        // 氏名
     private String name;
 
     @Column(name = "password", length = 64, nullable = false)   // 入力文字数 (ハッシュ関数を利用)
     private String password;
 
-    @Column(name = "admin_flag", nullable = false)
+    @Column(name = "admin_flag", nullable = false)      // 権限
     private Integer admin_flag;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false)      // 作成日時
     private Timestamp created_at;
 
-    @Column(name = "update_at", nullable = false)
-    private Timestamp update_at;
+    @Column(name = "updated_at", nullable = false)      // 更新日時
+    private Timestamp updated_at;
 
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
@@ -106,12 +106,12 @@ public class Employee {
         this.created_at = created_at;
     }
 
-    public Timestamp getUpdate_at() {
-        return update_at;
+    public Timestamp getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdate_at(Timestamp update_at) {
-        this.update_at = update_at;
+    public void setUpdated_at(Timestamp updated_at) {
+        this.updated_at = updated_at;
     }
 
     public Integer getDelete_flag() {
@@ -121,5 +121,6 @@ public class Employee {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
+
 
 }
