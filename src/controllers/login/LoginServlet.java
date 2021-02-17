@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        if(!check_result) {
+        if (!check_result) {
             // 認証できなかったらログイン画面に戻る
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
