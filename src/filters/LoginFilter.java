@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Employee;
@@ -45,12 +46,31 @@ public class LoginFilter implements Filter {
             // セッションスコープに保存された従業員（ログインユーザ）情報を取得
             Employee e = (Employee)session.getAttribute("login_employee");
 
-//            if()
-//
-//        }
+         // ログイン画面以外の場合
+            if(!servlet_path.equals("/login")) {
+                // ログアウトしている状態の場合、ログイン画面にリダイレクト
+                if(e == null) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/login");
+                    return;
+                }
 
+                // 従業員管理の機能は管理者のみが閲覧できるようにする
+                if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    return;
+                }
 
-//        chain.doFilter(request, response);
+             // ログイン画面の場合
+            } else {
+                // ログイン画面を表示させようとした場合、システムのトップページにリダイレクト
+                    if(e != null) {
+                        ((HttpServletResponse)response).sendRedirect(context_path);
+                        return;
+                    }
+                }
+            }
+
+        chain.doFilter(request, response);
     }
 
     /**
