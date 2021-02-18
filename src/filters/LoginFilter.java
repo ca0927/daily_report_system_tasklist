@@ -62,7 +62,7 @@ public class LoginFilter implements Filter {
 
              // ログイン画面の場合
             } else {
-                // ログイン画面を表示させようとした場合、システムのトップページにリダイレクト
+                // ログイン中にログイン画面を表示させようとした場合、システムのトップページにリダイレクト
                     if(e != null) {
                         ((HttpServletResponse)response).sendRedirect(context_path);
                         return;
