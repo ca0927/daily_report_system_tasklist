@@ -30,7 +30,7 @@ public class EmployeeValidator {
         return errors;
     }
 
-    // 社員番号
+    // 社員番号のバリデーション
     private static String validateCode(String code, Boolean codeDuplicateCheckFlag) {
         // 必須入力チェック
         if(code == null || code.equals("")) {
@@ -46,6 +46,7 @@ public class EmployeeValidator {
                 return "入力された社員番号の情報はすでに存在しています。";
             }
         }
+
         return "";
     }
 
