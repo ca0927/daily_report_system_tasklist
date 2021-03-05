@@ -40,27 +40,30 @@ public class Report {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id;                             //番号
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private Employee employee;              //社員番号
 
     @Column(name = "report_date", nullable = false)
-    private Date report_date;
+    private Date report_date;                   //日付
 
     @Column(name = "title", length = 255, nullable = false)
-    private String title;
+    private String title;                           //タイトル
 
     @Lob
     @Column(name = "content", nullable = false)
-    private String content;
+    private String content;                     //内容
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp created_at;
+    private Timestamp created_at;       //作成日時
 
     @Column(name = "updated_at", nullable = false)
-    private Timestamp updated_at;
+    private Timestamp updated_at;       //更新日時
+
+    @Column(name = "no_likes",nullable = false)
+    private Integer no_likes;                   //いいね数
 
     public Integer getId() {
         return id;
@@ -117,4 +120,13 @@ public class Report {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Integer getNo_likes() {
+        return no_likes;
+    }
+
+    public void setNo_likes(Integer no_likes) {
+        this.no_likes = no_likes;
+    }
+
 }
