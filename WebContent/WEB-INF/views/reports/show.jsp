@@ -35,6 +35,18 @@
                                 <fmt:formatDate value="${report.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
+                        <tr>
+                             <c:choose>
+                                <c:when test="${sessionScope.login_employee.id == report.employee.id}">
+                                    <th>いいね数</th>
+                                    <td><c:out value="${report.no_likes}" /></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <th><a href="<c:url value="/reports/no_likes?id=${report.id}" />">いいねする</a></th>
+                                    <td><c:out value="${report.no_likes}" /></td>
+                                </c:otherwise>
+                             </c:choose>
+                        </tr>
                     </tbody>
                 </table>
 

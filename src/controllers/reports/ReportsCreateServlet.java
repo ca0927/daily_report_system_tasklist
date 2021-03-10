@@ -59,7 +59,12 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(curretTime);
             r.setUpdated_at(curretTime);
 
+            //【追加】いいね数の処理（初期値を0で設定）
+            r.setNo_likes(0);
+
             List<String> errors = ReportValidator.validate(r);
+
+            // 入力箇所にエラーがあった場合、エラー通知と「日報 新規登録」画面を再表示
             if(errors.size() > 0) {
                 em.close();
 
@@ -69,7 +74,10 @@ public class ReportsCreateServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
                 rd.forward(request, response);
+
+            // エラーがない場合、完了通知と「日報 一覧」画面を表示
             } else {
+                // データベースに保存
                 em.getTransaction().begin();
                 em.persist(r);
                 em.getTransaction().commit();
